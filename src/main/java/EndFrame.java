@@ -15,6 +15,10 @@ public class EndFrame extends javax.swing.JFrame {
      */
     public EndFrame() {
         initComponents();
+        //get Scores from File
+        getScores score = new getScores();
+        
+        System.out.println(score.getString());
     }
 
     /**
