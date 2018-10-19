@@ -60,11 +60,15 @@ public class EndFrame extends javax.swing.JFrame {
         for (int i = 0; i < repetitionsNeeded; ++i) {
             System.out.println(scoreArray[playerCounter]);
 
-            entryString = scoreArray[playerCounter] + "      " + scoreArray[playerCounter+1] + "      " + scoreArray[playerCounter+2];
+            entryString = scoreArray[playerCounter + 2] + "      " + scoreArray[playerCounter+1] + "      " + scoreArray[playerCounter];
             playerCounter += 3;
             model.addElement(entryString);
         }
 
+        //SORT JLIST
+        
+        
+        
     }
 
     /**
