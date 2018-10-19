@@ -1,3 +1,7 @@
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -96,7 +100,11 @@ public class Game extends javax.swing.JFrame {
        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EndFrame(usernameLabel.getText(), selectionLabel.getText()).setVisible(true);
+                try {
+                    new EndFrame(usernameLabel.getText(), selectionLabel.getText(), ""+34).setVisible(true);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed

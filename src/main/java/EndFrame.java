@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.concurrent.TimeUnit;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -20,27 +21,50 @@ public class EndFrame extends javax.swing.JFrame {
     /**
      * Creates new form EndFrame
      */
-    public EndFrame(String username, String selection) {
+    public EndFrame(String username, String selection, String scorefromGame) throws InterruptedException {
         initComponents();
         //add score to file
         // username + selection
-        String entry = ";" + username + ";" + selection;
+        System.out.println(username + selection + scorefromGame);
+        String entry = username + ";" + selection + ";" + scorefromGame + ";";
+        System.out.println(entry);
         try {
-            Files.write(Paths.get("src/main/resources/Scores.txt"), "username".getBytes(), StandardOpenOption.APPEND);
+            Files.write(Paths.get("src/main/resources/Scores.txt"), entry.getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
-    //exception handling left as an exercise for the reader
+            //exception handling left as an exercise for the reader
             System.out.println("failed to write");
         }
 
         //get Scores from File
-        getScores score = new getScores();
+        String text = "";
+        try {
+            text = new String(Files.readAllBytes(Paths.get("src/main/resources/Scores.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        System.out.println(score.getString());
+        System.out.println(text);
+
         DefaultListModel model = new DefaultListModel();
         JList list = new JList(model);
         jScrollPane1.getViewport().add(list, null);
 
-        model.addElement("test");
+        String[] scoreArray = text.split(";");
+
+        int playerCounter = 0;
+        int maxEntrys = scoreArray.length;
+        int repetitionsNeeded = maxEntrys / 3;
+
+        String entryString;
+
+        for (int i = 0; i < repetitionsNeeded; ++i) {
+            System.out.println(scoreArray[playerCounter]);
+
+            entryString = scoreArray[playerCounter] + "      " + scoreArray[playerCounter+1] + "      " + scoreArray[playerCounter+2];
+            playerCounter += 3;
+            model.addElement(entryString);
+        }
+
     }
 
     /**
