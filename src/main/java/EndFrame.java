@@ -1,9 +1,16 @@
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author cstring
@@ -13,12 +20,27 @@ public class EndFrame extends javax.swing.JFrame {
     /**
      * Creates new form EndFrame
      */
-    public EndFrame() {
+    public EndFrame(String username, String selection) {
         initComponents();
+        //add score to file
+        // username + selection
+        String entry = ";" + username + ";" + selection;
+        try {
+            Files.write(Paths.get("src/main/resources/Scores.txt"), "username".getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+    //exception handling left as an exercise for the reader
+            System.out.println("failed to write");
+        }
+
         //get Scores from File
         getScores score = new getScores();
-        
+
         System.out.println(score.getString());
+        DefaultListModel model = new DefaultListModel();
+        JList list = new JList(model);
+        jScrollPane1.getViewport().add(list, null);
+
+        model.addElement("test");
     }
 
     /**
@@ -103,7 +125,6 @@ public class EndFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

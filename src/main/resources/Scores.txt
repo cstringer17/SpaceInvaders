@@ -1,1 +1,1 @@
-name;score;name2;score2;name3;score3
+username

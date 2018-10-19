@@ -18,8 +18,8 @@ public class Game extends javax.swing.JFrame {
         usernameLabel.setText(Username);
         selectionLabel.setText(selection);
         
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,6 +32,7 @@ public class Game extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         usernameLabel = new javax.swing.JLabel();
         selectionLabel = new javax.swing.JLabel();
+        scoretest = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +47,13 @@ public class Game extends javax.swing.JFrame {
 
         selectionLabel.setText("jLabel1");
 
+        scoretest.setText("EnterScore");
+        scoretest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scoretestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,12 +63,12 @@ public class Game extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scoretest, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(usernameLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
+                        .addComponent(usernameLabel)
+                        .addGap(65, 65, 65)
                         .addComponent(selectionLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -68,10 +76,12 @@ public class Game extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(usernameLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(selectionLabel)
-                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(usernameLabel)
+                    .addComponent(selectionLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(scoretest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
                 .addComponent(jButton1)
                 .addGap(61, 61, 61))
         );
@@ -82,12 +92,18 @@ public class Game extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Imititate GAMEEND
         setVisible(false);
+       
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EndFrame().setVisible(true);
+                new EndFrame(usernameLabel.getText(), selectionLabel.getText()).setVisible(true);
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void scoretestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoretestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_scoretestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,7 +111,9 @@ public class Game extends javax.swing.JFrame {
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JTextField scoretest;
     private javax.swing.JLabel selectionLabel;
     private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
+    private String UsernameEntry;
 }
