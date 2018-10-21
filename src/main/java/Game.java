@@ -140,7 +140,7 @@ public class Game extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Open Game Progress
        StarterGame start = new StarterGame();
-       start.mainStart();
+     //  start.mainStart();
        
         
     }//GEN-LAST:event_jButton2ActionPerformed
